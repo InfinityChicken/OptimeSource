@@ -1,7 +1,4 @@
 <!DOCTYPE HTML>
-<script>
-    var loggedin = false
-</script>
 
 <style>
     ul {
@@ -14,19 +11,44 @@
     }
     li a {
         display: block;
-        color: white;
+        color: black;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
+        font-size: 20px;
     }
     li a:hover {
+        background-color: #000;
+        color: white;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
         background-color: #111;
+        min-width: 16px;
+        padding: 15px 20px;
+        z-index: 1;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
     }
 </style>
 
 <body>
     <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="events.html">Events</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html"><div class="dropdown"><span>
+            Events
+            <div class="dropdown-content">
+                <p>Hiiii!</p>
+            </div>
+        </span></div></a></li>
+        <li><a href="login.html" id="logindisplay">Loading...</a></li>
     </ul>
 </body>
+
+<script src="script.js"></script>
