@@ -1,10 +1,66 @@
 <!DOCTYPE HTML>
 
 <style>
-    ul {
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        padding: 10px 10px;
+    }
+    .navbar a {
+        float: left;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: red;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        ackground-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px #000;
+        z-index: 1;
+    }
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    /* ul {
         list-style-type: none;
         margin: 0;
         padding: 0px;
+        overflow: hidden;
+        background-color: #333;
     }
     li {
         float: left;
@@ -20,35 +76,25 @@
     li a:hover {
         background-color: #000;
         color: white;
-    }
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #111;
-        min-width: 16px;
-        padding: 15px 20px;
-        z-index: 1;
-    }
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
+    } */
+
 </style>
 
 <body>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="events.html"><div class="dropdown"><span>
-            Events
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                Events
+            </button>
             <div class="dropdown-content">
-                <p>Hiiii!</p>
+                <a href="optime.js">Group Events (Smart Scheduler)</a>
+                <a href="schedule.js">Schedule a Group Event</a>
+                <a href="personal_events.js">Schedule a Personal Event</a>
             </div>
-        </span></div></a></li>
-        <li><a href="login.html" id="logindisplay">Loading...</a></li>
-    </ul>
+        </div>
+        <a href="login" id="logindisplay"></a>
+    </div>
 </body>
 
 <script src="script.js"></script>
