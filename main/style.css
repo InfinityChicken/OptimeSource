@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Lato:wght@300;700&display=swap');
+    body {
+        font-family: 'Inter', sans-serif;
+        font-family: 'Lato', sans-serif;
+    }
+    .event {
+        background-color: #f9f9f9;
+        height: 40%;
+        font-size: 30px;
+        margin: 10px 10px;
+        padding: 10px;
+        vertical-align: top;
+    }
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        /* padding: 10px 10px; */
+    }
+    .navbar a {
+        float: left;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+    }
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 20px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+    .navbar a:hover, .dropdown:hover .dropbtn {
+        background-color: red;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .sidenav {
+        height: 70%;
+        width: 160px;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 10px;
+        margin-top: 8%;
+        margin-left: 40px;
+    }
+    .eventsection {
+        height: 70%;
+        /* width: 160px; */
+        position: absolute;
+        z-index: 1;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 10px;
+        margin-top: 4%;
+        margin-left: 25%;
+    }
+    .rsvps {
+        height: 70%;
+        /* width: 160px; */
+        position: absolute;
+        z-index: 1;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 10px;
+        margin-top: 3%;
+        margin-left: 82%;
+        padding: 40px 10px;
+    }
+    .rsvps div {
+        margin-top: 20px;
+    }
+    .rsvps button {
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-right: 5px;
+        color: white;
+    }
+    .abutton {
+        background-color: green;
+        color: white;
+        width: auto;
+        padding: 10px;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.1);
+    }
+    .dbutton {
+        background-color: red;
+        color: white;
+        width: auto;
+        padding: 10px;
+        border: none;
+    }
