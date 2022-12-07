@@ -8,10 +8,11 @@
   -event 
 */
 
-require("dotenv").config();
-
 var mysql = require("mysql");
 
+
+
+console.log(process.env.HOST);
 var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
   host: process.env.HOST,
   user: process.env.USER,
@@ -19,7 +20,15 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   port: process.env.PORT,
 });
 
+createEventObject();
+
 function createEventObject(tag) {
+
+  database.query("SELECT * FROM EVENTS WHERE EVENTID=1", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+
   let event = {
     tag: tag, //TODO: get tag from html
     name: database.query(), //TODO: add parameters
@@ -30,8 +39,10 @@ function createEventObject(tag) {
     draft: database.query(), //will return 0 or 1 -- 0 = false, 1 = true
     //color: database.query(),
   }
+
   return event;
 }
+
 
 function createUserObject(tag) {
   let user = {
