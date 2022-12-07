@@ -11,7 +11,7 @@ function extractCookies(cookieStr) {
         builder[cur[0]] = cur[1]
         return builder
       }, {})
-    } else { return null }
+    } else { return {} }
 }
 cookies = extractCookies(document.cookie)
 if (cookies.email) cookies.email = cookies.email.replace('%40', '@')
