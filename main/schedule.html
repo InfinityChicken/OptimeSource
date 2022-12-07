@@ -3,7 +3,8 @@
 
 
 <script>
-    function extractCookies(cookieStr) {
+    if (document.cookie.length > 0) {
+        function extractCookies(cookieStr) {
     return cookieStr
       .match(/(^|(?<=, ))[^=;,]+=[^;]+/g)
       .map(cookie => cookie.split('=').map(v => v.trim()))
@@ -13,6 +14,9 @@
         return builder
       }, {})
 }
+    } else {
+        return null;
+    }
 cookies = extractCookies(document.cookie)
     function submit() {
         ename = document.getElementById("eventname").value;
