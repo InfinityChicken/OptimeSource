@@ -1,17 +1,3 @@
-var mysql = require("mysql");
-
-var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
-  host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
-  user: "NodeJS",
-  password: "AVNS_gJkeuKpNtnsOqAj64TM",
-  port: "25060",
-});
-
-database.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
 /* TODO:
 -add files and set up:
   -event creation/modification
@@ -21,6 +7,15 @@ database.connect(function(err) {
   -login
   -event 
 */
+
+var mysql = require("mysql");
+
+var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
+  host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
+  user: "NodeJS",
+  password: "AVNS_gJkeuKpNtnsOqAj64TM",
+  port: "25060",
+});
 
 function createEventObject(tag) {
   let event = {
