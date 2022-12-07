@@ -8,13 +8,15 @@
   -event 
 */
 
+require("dotenv").config();
+
 var mysql = require("mysql");
 
 var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
-  host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
-  user: "NodeJS",
-  password: "AVNS_gJkeuKpNtnsOqAj64TM",
-  port: "25060",
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
 });
 
 function createEventObject(tag) {
@@ -25,6 +27,7 @@ function createEventObject(tag) {
     startTime: database.query(),
     endTime: database.query(),
     duration: database.query(),
+    draft: database.query(), //will return 0 or 1 -- 0 = false, 1 = true
     //color: database.query(),
   }
   return event;
@@ -32,12 +35,20 @@ function createEventObject(tag) {
 
 function createUserObject(tag) {
   let user = {
-  tag: tag, //TODO: get tag from html
-  username: database.query(), //TODO: add parameters
-  email: database.query(),
-  password: database.query(),
-  firstName: database.query(),
-  lastName: database.query(),
+    tag: tag, //TODO: get tag from html
+    username: database.query(), //TODO: add parameters
+    password: database.query(),
+    email: database.query(),
+    firstName: database.query(),
+    lastName: database.query(),
   //status: database.query(),
+  }
+  return user;
+}
+
+function createRSVPObject(eventTag) {
+  let rsvp = {
+    event: eventTag,
+    users: (database.query()).split("")
   }
 }
