@@ -20,6 +20,11 @@ app.get('/loginwith', async (req, res) => {
     res.redirect('/') /* Redirects the user to the home page */
 })
 
+app.get('/scheduleapi', async (req, res) => {
+    console.log(req.query)
+    /* req.query is a JSON array of all of the parameters; name (eventname); start (ex: 05:29); finish; info; month (ex: 05); year (ex: 2023); day; email*/
+})
+
 app.get('/accept', async (req, res) => {
 
 })

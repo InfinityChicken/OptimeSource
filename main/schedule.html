@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="style.css" />
+
+
+
+<script>
+    function extractCookies(cookieStr) {
+    return cookieStr
+      .match(/(^|(?<=, ))[^=;,]+=[^;]+/g)
+      .map(cookie => cookie.split('=').map(v => v.trim()))
+      .filter(v => v[0].length && v[1].length)
+      .reduce((builder, cur) => {
+        builder[cur[0]] = cur[1]
+        return builder
+      }, {})
+}
+cookies = extractCookies(document.cookie)
+    function submit() {
+        ename = document.getElementById("eventname").value;
+        eventdate = document.getElementById("eventdate").value.split('-');
+        estarttime = document.getElementById("eventstarttime").value;
+        eendtime = document.getElementById("eventendtime").value;
+        einfo = document.getElementById("eventinfo").value;
+        window.location.href=`/scheduleapi?name=${ename}&start=${estarttime}&finish=${eendtime}&info=${einfo}&month=${eventdate[1]}&year=${eventdate[0]}&day=${eventdate[2]}&email=${cookies.email}`
+    }
+</script>
+
+<body>
+    <h1>Event Creator</h1>
+    <h3>Finalize Your Event!</h3>
+    <p style="display: inline-block;">Event Name</p>
+    <input style="display: inline-block" type="text" id="eventname" /><br>
+    <p style="display: inline-block;">Event Date</p>
+    <input style="display: inline-block" type="date" id="eventdate" /><br>
+    <p style="display: inline-block;">Event Time</p>
+    <input style="display: inline-block" type="time" id="eventstarttime" />
+    -
+    <input style="display: inline-block" type="time" id="eventendtime" /><br>
+    Info:
+    <textarea style="display: inline-block;" maxlength=200 cols="50" rows="2" id="eventinfo"></textarea><br>
+    <button onclick="submit()">Make The Event!</button>
+</body>
