@@ -1,5 +1,7 @@
 const express = require("express") /* Imports express (the server module) */
 var app = express() /* Makes a new server */
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 /** app.get is run when a path is loaded on a browser */
 app.get('/', async (req, res) => {
@@ -10,7 +12,13 @@ app.get('/web/:name', async (req, res) => {
     res.sendFile(__dirname + '/main/' + req.params.name) /* example.com/web/file will load main/file */
 })
 
-
+app.get('/loginwith', async (req, res) => {
+    /* Login Requests */
+    userparam = req.query['username']
+    passparam = req.query['password']
+    res.cookie('email', userparam) /* The code to log the user in. Rn it doesn't use the database */
+    res.redirect('/') /* Redirects the user to the home page */
+})
 
 app.get('/accept', async (req, res) => {
 
