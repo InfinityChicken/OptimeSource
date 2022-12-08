@@ -9,10 +9,6 @@
 */
 
 var mysql = require("mysql");
-
-
-
-console.log(process.env.HOST);
 var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
   host: process.env.HOST,
   user: process.env.USER,
@@ -20,61 +16,33 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   port: process.env.PORT,
 });
 
-function createEventObject(tag) {
-
-  database.query("SELECT * FROM EVENTS WHERE EVENTID=1", function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-  });
-
-  let event = {
-    tag: tag, //TODO: get tag from html
-    name: database.query(), //TODO: add parameters
-    description: database.query(),
-    startTime: database.query(),
-=======
 function eventObject(tag) {
-  return {
-    tag: tag, //string
-    name: database.query(), //string
-    description: database.query(), //string
-    startTime: database.query(), 
->>>>>>> Stashed changes
-    endTime: database.query(),
-    duration: database.query(),
-    draft: database.query(), //will return 0 or 1 -- 0 = false, 1 = true
-    progress: database.query(), //will return in-progress, finished, or upcoming
-    //color: database.query(),
+    return {
+      tag: tag, //string
+      name: database.query(), //string
+      description: database.query(), //string
+      startTime: database.query(), 
+      endTime: database.query(),
+      duration: database.query(),
+      draft: database.query(), //will return 0 or 1 -- 0 = false, 1 = true
+      progress: database.query(), //will return in-progress, finished, or upcoming
+      //color: database.query(),
   }
-
-  return event;
 }
 
-function createUserObject(tag) {
-  let user = {
-=======
+// database.query("SELECT * FROM EVENTS WHERE EVENTID=1", function (err, result, fields) {
+  //   if (err) throw err;
+  //   console.log(result);
+  // });
+
 function userObject(tag) {
   return {
->>>>>>> Stashed changes
     tag: tag, //TODO: get tag from html
     username: database.query(), //TODO: add parameters
     password: database.query(),
     email: database.query(),
     firstName: database.query(),
     lastName: database.query(),
-<<<<<<< Updated upstream
-  //status: database.query(),
-  }
-  return user;
-}
-
-function createRSVPObject(eventTag) {
-  let rsvp = {
-    event: eventTag,
-    users: (database.query()).split("")
-  }
-}
-=======
     //status: database.query(),
   };
 }
@@ -122,4 +90,3 @@ function writeToRSVPs() {
 module.exports.eventObject = eventObject;
 module.exports.userObject = userObject;
 module.exports.database = database;
->>>>>>> Stashed changes

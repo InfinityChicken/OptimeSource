@@ -2,20 +2,11 @@ import {createEventObject} from DBUtility.js;
 import {createUserObject} from DBUtility.js;
 
 
-<<<<<<< Updated upstream
-function findOptimalTime(eventTag) {
-    const event = createEventObject(tag);
-}
-
-function findOverlap(eventTag, event, user)
-=======
 function passValuesCalculator() { //TODO: fill this up later and pass to findOptimalTime
     return null; //TODO: get magical millisecond values from here using .getTime();
 }
 
 function findOptimalTime(possibleTimes, duration, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time, date
-    for (invitedUsers)
-    
     let optimalTimes = [[]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
     for (let perI = 0; perI < possibleTimes.length(); perI++) { //loops over all events
         for (let trialEnd = possibleTimes[perI[0]] + duration; trialEnd <= possibleTimes[perI[1]]; trialEnd+=300000) { //iterations of 5 minutes (300,000 miliseconds)
@@ -39,4 +30,3 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
 }
 
 module.exports.passValuesCalculator = passValuesCalculator;
->>>>>>> Stashed changes
