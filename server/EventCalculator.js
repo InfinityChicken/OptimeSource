@@ -1,10 +1,4 @@
-require(DBUtility.js);
-
-//TODO: export pass to calculator
-
-function passToCalculator() { //TODO: fill this up later and pass to findOptimalTime
-    return null; //TODO: get magical millisecond values from here using .getTime();
-}
+//TODO: export calculator, connect the calculator
 
 /* how the code works:
 -makes some variables
@@ -14,9 +8,17 @@ function passToCalculator() { //TODO: fill this up later and pass to findOptimal
             -loops through users' events
 */
 
+
+var DBUtility = require(DBUtility.js);
+
+function calculate() { 
+    optimalTimes = findOptimalTime ()
+    return optimalTimes; 
+}
+
 function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time, date
     
-    let optimalTimes = [[]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
+    let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
     const duration = possibleTimes[0[1]] - possibleTimes[0[0]]
 
     for (let perI = 0; perI < possibleTimes.length(); perI++) { //loops over all events
@@ -26,17 +28,16 @@ function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array 
             trialStart = trialEnd - duration;
             errorRate = findOverlap(trialStart, trialEnd, invitedUsers);
             
-            if (optimalTimes[0[2]] == null) { //TODO: find better way to do this
-                optimalTimes.push([trialStart, trialEnd, trial]);
-                continue;
-            } else if (errorRate = optimalTimes[0[2]]) { //if error rate is equivalent, add the times
-                optimalTimes.push([trialStart, trialEnd, trial]); //TODO: this might break something so check it when testing             
+            if (errorRate = optimalTimes[0[2]]) { //if error rate is equivalent, add the times
+                optimalTimes.push([trialStart, trialEnd, trial]);    
             } else if (errorRate < optimalTimes[0[2]]) { //if error rate is lower, clear the array and add the times
                 optimalTimes = [[]];
                 optimalTimes.push([trialStart, trialEnd, trial]);
             }
         }
     }
+
+    return optimalTimes;
 }
 
 function findOverlap(trialStart, trialEnd, invitedUsers) {
@@ -59,3 +60,5 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
         }
     }
 }
+
+module.exports.calculate = calculate;
