@@ -14,26 +14,73 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   user: process.env.USER,
   password: process.env.PASSWORD,
   port: process.env.PORT,
+  database: process.env.DATABASE,
 });
 
-function eventObject(tag) {
-    return {
-      tag: tag, //string
-      name: database.query(), //string
-      description: database.query(), //string
-      startTime: database.query(), 
-      endTime: database.query(),
-      duration: database.query(),
-      draft: database.query(), //will return 0 or 1 -- 0 = false, 1 = true
-      progress: database.query(), //will return in-progress, finished, or upcoming
-      //color: database.query(),
-  }
-}
 
+// CODE BELOW - use for testing, there is a premade row in the DB
+// var database = mysql.createConnection({  
+//   host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
+//   user: "ServerConnection",
+//   password: "AVNS_09XmkxXWtSdmICyUdMk",
+//   port: "25060",
+//   database: "defaultdb"
+// });
+
+// CODE BEFORE ADVITAFICATION (for reference, in case of confusion)
+// function eventObject(tag) {
+//     return {
+//       tag: tag, //string
+//       name: database.query(), //string
+//       description: database.query(), //string
+//       startTime: database.query(), 
+//       endTime: database.query(),
+//       duration: database.query(),
+//       draft: database.query(), //will return 0 or 1 -- 0 = false, 1 = true
+//       progress: database.query(), //will return in-progress, finished, or upcoming
+//       //color: database.query(),
+//   }
+// }
 // database.query("SELECT * FROM EVENTS WHERE EVENTID=1", function (err, result, fields) {
   //   if (err) throw err;
   //   console.log(result);
   // });
+
+
+
+  //CODE AFTER ADVITAFICATION
+function createEventObject(tag) {
+
+  let event = {
+      tag: tag, //string
+      name: "", //string
+      description: "", //string
+      startTime: "", 
+      endTime: "",
+      // duration: "",
+      // draft: "", //will return 0 or 1 -- 0 = false, 1 = true
+      // progress: "", //will return in-progress, finished, or upcoming
+      //color: database.query(),
+  }
+
+
+  database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
+    if (err) throw err;
+      result.forEach((row) => {
+
+    // console.log(row.description);
+    event.name = row.name;
+    event.description = row.description;
+    event.startTime = row.startTime;
+    event.endTime = row.endTime;
+    console.log(event.description);
+    console.log(event);
+  });
+  });
+
+  return event;
+}
+
 
 function userObject(tag) {
   return {
