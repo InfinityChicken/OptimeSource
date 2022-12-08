@@ -29,4 +29,4 @@ app.get('/accept', async (req, res) => {
 
 })
 
-app.listen(80, () => {}) /* Boots the server */
+app.listen(80, () => { console.log('server booted') }) /* Boots the server */

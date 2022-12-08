@@ -2,7 +2,8 @@
 
 var loggedin = false
 function extractCookies(cookieStr) {
-    return cookieStr
+    if (document.cookie.length > 0) {
+        return cookieStr
       .match(/(^|(?<=, ))[^=;,]+=[^;]+/g)
       .map(cookie => cookie.split('=').map(v => v.trim()))
       .filter(v => v[0].length && v[1].length)
@@ -10,6 +11,7 @@ function extractCookies(cookieStr) {
         builder[cur[0]] = cur[1]
         return builder
       }, {})
+    } else { return {} }
 }
 cookies = extractCookies(document.cookie)
 if (cookies.email) cookies.email = cookies.email.replace('%40', '@')
