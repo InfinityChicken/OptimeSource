@@ -4,8 +4,8 @@ var cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
 /** app.get is run when a path is loaded on a browser */
-app.get('/', async (req, res) => {
-    res.redirect('/web/index.html') /* redirects to the index page if there's no additional path */
+app.get('/', async (req, res) => { // domain.com -> domain.com/web/index.html
+    res.redirect('/web/index.html')
 })
 
 app.get('/web/:name', async (req, res) => {
@@ -26,7 +26,8 @@ app.get('/scheduleapi', async (req, res) => {
 })
 
 app.get('/accept', async (req, res) => {
-
+    /* Happens when someone accepts an invite */
+    id = req.query['id']
 })
 
 app.listen(80, () => { console.log('server booted') }) /* Boots the server */
