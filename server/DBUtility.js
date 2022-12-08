@@ -47,24 +47,16 @@ function userObject(tag) {
   };
 }
 
-function userRSVP(userTag, eventTag) {
+function rsvpStatus(userTag, eventTag) {
   return {
     rsvpStatus: database.query(),
   }
 }
 
 function userEvents(userTag) {
-  let events = [];
-  while (true) {
-    const currentEvent = database.query();
-    events += currentEvent;
-    if (database.query() = null) {
-      break;
-    } 
-  }
   return {
-    events,
-    rsvpStatus: database.query(),
+    events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
+    rsvpStatus: database.query("SELECT "+userTag+""),
   };
 }
 
