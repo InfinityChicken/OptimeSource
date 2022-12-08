@@ -26,7 +26,8 @@ app.get('/scheduleapi', async (req, res) => {
 })
 
 app.get('/accept', async (req, res) => {
-
+    /* Happens when someone accepts an invite */
+    id = req.query['id']
 })
 
 app.listen(80, () => { console.log('server booted') }) /* Boots the server */
