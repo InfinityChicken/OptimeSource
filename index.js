@@ -4,8 +4,8 @@ var cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
 /** app.get is run when a path is loaded on a browser */
-app.get('/', async (req, res) => {
-    res.redirect('/web/index.html') /* redirects to the index page if there's no additional path */
+app.get('/', async (req, res) => { // domain.com -> domain.com/web/index.html
+    res.redirect('/web/index.html')
 })
 
 app.get('/web/:name', async (req, res) => {
