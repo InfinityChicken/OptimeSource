@@ -49,7 +49,7 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
 
 
   //CODE AFTER ADVITAFICATION
-function createEventObject(tag) {
+function eventObject(tag) {
 
   let event = {
       tag: tag, //string
@@ -74,13 +74,32 @@ function createEventObject(tag) {
     event.startTime = row.startTime;
     event.endTime = row.endTime;
     console.log(event.description);
+    event.eventType = row.eventType;
+
     console.log(event);
   });
   });
-
+  console.log(event);
   return event;
 }
 
+function addEventToDB(event) {
+// object created for testing
+  //   let eventTest = {
+  //     name: "testEvent", //string
+  //     description: "This is for testing", //string
+  //     startTime: "2022-12-07 09:54:11", 
+  //     endTime: "2022-12-07 09:54:11",
+  //     eventType: "Solo"
+  // }
+  // console.log(eventTest);
+
+    var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
+  database.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+  }
 
 function userObject(tag) {
   return {
