@@ -30,7 +30,7 @@ function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array 
     const duration = possibleTimes[0[1]] - possibleTimes[0[0]]
 
     for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all events
-        
+         
         for (let trialEnd = possibleTimes[perI[0]] + duration; trialEnd <= possibleTimes[perI[1]]; trialEnd+=300000) { //iterations of 5 minutes (300,000 miliseconds)
             
             trialStart = trialEnd - duration;
