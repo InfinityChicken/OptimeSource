@@ -9,7 +9,7 @@
 */
 
 
-var DBUtility = require(DBUtility.js);
+var DBUtility = require(__dirname + '/DBUtility.js');
 
 function calculate() { 
     optimalTimes = findOptimalTime([[1670680800, 1670695200], [1670767200, 1670781600]], ["InfinityChicken#3657", "pieris#2276"]);
