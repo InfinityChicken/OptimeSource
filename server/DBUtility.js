@@ -63,7 +63,6 @@ function eventObject(tag) {
       //color: database.query(),
   }
 
-
   database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
     if (err) throw err;
       result.forEach((row) => {
@@ -119,31 +118,24 @@ function rsvpStatus(userTag, eventTag) {
   }
 }
 
-function userEvents(userTag) {
-  return {
-    events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
-    rsvpStatus: database.query("SELECT "+userTag+""),
-  };
-}
+// function userEvents(userTag) {
+//   return {
+//     events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
+//     rsvpStatus: database.query("SELECT "+userTag+""),
+//   };
+// }
 
-function eventInvitees(eventTag) {  
-  return {
-    users: database.query(),
-    rsvpStatuses: database.query(),
-  };
-}
+// function writeToEvents() { TODO: is this necessary?
+//   return null;
+// }
 
-function writeToEvents() {
-  return null;
-}
+// function writeToUsers() {
+//   return null;
+// }
 
-function writeToUsers() {
-  return null;
-}
-
-function writeToRSVPs() {
-  return null;
-}
+// function writeToRSVPs() {
+//   return null;
+// }
 
 module.exports.eventObject = eventObject;
 module.exports.userObject = userObject;

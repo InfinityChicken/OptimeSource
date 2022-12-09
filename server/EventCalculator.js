@@ -12,11 +12,11 @@
 var DBUtility = require(DBUtility.js);
 
 function calculate() { 
-    optimalTimes = findOptimalTime ()
+    optimalTimes = findOptimalTime([[1670680800, 1670695200], [1670767200, 1670781600]], ["InfinityChicken#3657", "pieris#2276"]);
     return optimalTimes; 
 }
 
-function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time, date
+function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
     
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
     const duration = possibleTimes[0[1]] - possibleTimes[0[0]]
