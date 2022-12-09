@@ -49,6 +49,9 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
 
 
   //CODE AFTER ADVITAFICATION
+
+eventObject(1);
+
 function eventObject(tag) {
 
   let event = {

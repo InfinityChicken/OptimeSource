@@ -24,29 +24,30 @@
     // return optimalTimes; 
 // }
 
-function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
+function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
     
+    duration = 7200; //TODO: remove testing stuff -- this is testing stuff
+
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
-    const duration = possibleTimes[0][1] - possibleTimes[0][0];
 
     for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all events
         eventI = 0;
         while (true) { //bc im lazy lay off me
-            let trialEnd = possibleTimes[perI][1] + (eventI*300);
+            let trialStart = possibleTimes[perI][0] + (eventI*300);
+            
+            let trialEnd = trialStart + duration;
             
             if (trialEnd > possibleTimes[perI][1]) {
                 break;
             }
             
-            let trialStart = possibleTimes[perI][0] + (eventI*300);
-            
             errorRate = findOverlap(trialStart, trialEnd, invitedUsers);
             
             if (errorRate == optimalTimes[0][2]) { //if error rate is equivalent, add the times
-                optimalTimes.push([trialStart, trialEnd]);    
+                optimalTimes.push([trialStart, trialEnd, errorRate]);    
             } else if (errorRate < optimalTimes[0][2]) { //if error rate is lower, clear the array and add the times
                 optimalTimes = [];
-                optimalTimes.push([trialStart, trialEnd]);
+                optimalTimes.push([trialStart, trialEnd, errorRate]);
             }
 
             eventI++;
@@ -63,7 +64,9 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
         // const userEvents = DBUtility.userEvents(invitedUsers[userI]); 
         //TODO: add some way to filter out the events that have been rsvped no to
 
-        const userEvents = [["1670677200", "1670684400"], ["1670763600", "1670770800"], []]; //TODO: this is test code, get rid of it later
+        const userEvents = [["1670677200", "1670684400"], ["1670763600", "1670770800"], ["1670691600", "1670695200"], ["1670778000","1670781600"]]; //TODO: this is test code, get rid of it later
+
+        //TODO: find a way to filter events 
 
         for (let eventI = 0; eventI < userEvents.length; eventI++) { //iterates through events
             // const eventStart = database.query(eventI[eventI]); //TODO: add the special sauce (queries)
@@ -72,9 +75,9 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
             const eventStart = userEvents[eventI][0];
             const eventEnd = userEvents[eventI][1];
 
-            if (eventStart <= trialStart <= trialEnd || eventStart <= trialEnd <= trialEnd) { //if the trial time starts/ends during the tested event
+            if (eventStart < trialStart < trialEnd || eventStart < trialEnd < trialEnd) { //if the trial time starts/ends during the tested event
                 errorRate++;
-            } else if (trialStart <= eventStart <= eventEnd || trialEnd <= eventEnd <= trialEnd) { //if the event lies in the trial period 
+            } else if (trialStart < eventStart < eventEnd || trialEnd < eventEnd < trialEnd) { //if the event lies in the trial period 
                 errorRate++; 
             } else if (trialStart == eventStart || trialEnd == eventEnd) { //if the event is exactly the same time
                 errorRate++
