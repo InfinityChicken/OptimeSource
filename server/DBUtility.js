@@ -118,12 +118,12 @@ function rsvpStatus(userTag, eventTag) {
   }
 }
 
-// function userEvents(userTag) {
-//   return {
-//     events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
-//     rsvpStatus: database.query("SELECT "+userTag+""),
-//   };
-// }
+function userEvents(userTag) {
+  return {
+    events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
+    rsvpStatus: database.query("SELECT "+userTag+""),
+  };
+}
 
 // function writeToEvents() { TODO: is this necessary?
 //   return null;

@@ -9,19 +9,27 @@
 */
 
 
-var DBUtility = require(DBUtility.js);
+// var DBUtility = require(DBUtility.js);
 
-function calculate() { 
-    optimalTimes = findOptimalTime([[1670680800, 1670695200], [1670767200, 1670781600]], ["InfinityChicken#3657", "pieris#2276"]);
-    return optimalTimes; 
-}
+// function calculate() { 
+    let possibleTimes = [[1670680800, 1670695200], [1670767200, 1670781600]];
+    let invitedUsers = ["InfinityChicken#3657", "pieris#2276"];
+
+    optimalTimes = findOptimalTime(possibleTimes, invitedUsers);
+
+    for(i=0; i<optimalTimes.length; i++) {
+        console.log(optimalTimes[i])
+    }
+
+    // return optimalTimes; 
+// }
 
 function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
     
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
     const duration = possibleTimes[0[1]] - possibleTimes[0[0]]
 
-    for (let perI = 0; perI < possibleTimes.length(); perI++) { //loops over all events
+    for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all events
         
         for (let trialEnd = possibleTimes[perI[0]] + duration; trialEnd <= possibleTimes[perI[1]]; trialEnd+=300000) { //iterations of 5 minutes (300,000 miliseconds)
             
@@ -44,11 +52,17 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
     
     for (let userI = 0; userI < invitedUsers.length; userI++) { //iterates through users
         
-        const userEvents = DBUtility.userEvents(invitedUsers[userI]);
+        // const userEvents = DBUtility.userEvents(invitedUsers[userI]); 
+        //TODO: add some way to filter out the events that have been rsvped no to
 
-        for (let eventI = 0; eventI < events.length(); eventI++) { //iterates through events
-            const eventStart = database.query(eventI[eventI]); //TODO: add the special sauce (queries)
-            const eventEnd = database.query(userEvents[eventI]);
+        const userEvents = [["1670677200", "1670684400"], ["1670763600", "1670770800"]]; //TODO: this is test code, get rid of it later
+
+        for (let eventI = 0; eventI < events.length; eventI++) { //iterates through events
+            // const eventStart = database.query(eventI[eventI]); //TODO: add the special sauce (queries)
+            // const eventEnd = database.query(userEvents[eventI]); 
+
+            const eventStart = userEvents[eventI[0]];
+            const eventEnd = userEvents[eventI[1]];
 
             if (eventStart <= trialStart <= trialEnd || eventStart <= trialEnd <= trialEnd) { //if the trial time starts/ends during the tested event
                 errorRate++;
@@ -60,5 +74,3 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
         }
     }
 }
-
-module.exports.calculate = calculate;
