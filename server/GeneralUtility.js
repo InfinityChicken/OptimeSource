@@ -6,10 +6,9 @@ module.exports = {
             tag += random;
         }   
     
-        if (tag = null) { //TODO: add an sql query here to check if a tag preexists
+        if (tag == null) { //TODO: add an sql query here to check if a tag preexists
             generateTag(name);
         }
-    
         return tag;
     }
 }
