@@ -9,31 +9,33 @@
 */
 
 
-var DBUtility = require(DBUtility.js);
+var DBUtility = require(__dirname + '/DBUtility.js');
 
-function calculate() { 
-    optimalTimes = findOptimalTime([[1670680800, 1670695200], [1670767200, 1670781600]], ["InfinityChicken#3657", "pieris#2276"]);
-    return optimalTimes; 
-}
+function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
 
-function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
-    
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
-    const duration = possibleTimes[0[1]] - possibleTimes[0[0]]
 
-    for (let perI = 0; perI < possibleTimes.length(); perI++) { //loops over all events
-        
-        for (let trialEnd = possibleTimes[perI[0]] + duration; trialEnd <= possibleTimes[perI[1]]; trialEnd+=300000) { //iterations of 5 minutes (300,000 miliseconds)
+    for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all trial times
+        let trialI = 0;
+        while (true) {
+            let trialStart = possibleTimes[perI][0] + (trialI*300);
             
-            trialStart = trialEnd - duration;
+            let trialEnd = trialStart + duration;
+            
+            if (trialEnd > possibleTimes[perI][1]) {
+                break;
+            }
+            
             errorRate = findOverlap(trialStart, trialEnd, invitedUsers);
             
-            if (errorRate = optimalTimes[0[2]]) { //if error rate is equivalent, add the times
-                optimalTimes.push([trialStart, trialEnd, trial]);    
-            } else if (errorRate < optimalTimes[0[2]]) { //if error rate is lower, clear the array and add the times
-                optimalTimes = [[]];
-                optimalTimes.push([trialStart, trialEnd, trial]);
+            if (errorRate == optimalTimes[0][2]) { //if error rate is equivalent, add the times
+                optimalTimes.push([trialStart, trialEnd, errorRate]);    
+            } else if (errorRate < optimalTimes[0][2]) { //if error rate is lower, clear the array and add the times
+                optimalTimes = [];
+                optimalTimes.push([trialStart, trialEnd, errorRate]);
             }
+            
+            trialI++;
         }
     }
 
@@ -41,24 +43,23 @@ function findOptimalTime(possibleTimes, invitedUsers) {  //possibleTimes: array 
 }
 
 function findOverlap(trialStart, trialEnd, invitedUsers) {
-    
+    let errorRate = 0;
     for (let userI = 0; userI < invitedUsers.length; userI++) { //iterates through users
-        
-        const userEvents = DBUtility.userEvents(invitedUsers[userI]);
+        const userEvents = DBUtility.userYesEvents(invitedUsers[userI]); 
 
-        for (let eventI = 0; eventI < events.length(); eventI++) { //iterates through events
-            const eventStart = database.query(eventI[eventI]); //TODO: add the special sauce (queries)
-            const eventEnd = database.query(userEvents[eventI]);
+        for (let eventI = 0; eventI < userEvents.length; eventI++) { //iterates through events
+            const event = DBUtility.eventObject(userEvents[eventI]);
 
-            if (eventStart <= trialStart <= trialEnd || eventStart <= trialEnd <= trialEnd) { //if the trial time starts/ends during the tested event
+            if (event.startTime < trialStart && trialStart < event.endTime || event.startTime < trialEnd && trialEnd < event.endTime) { //if the trial time starts/ends during the tested event
                 errorRate++;
-            } else if (trialStart <= eventStart <= eventEnd || trialEnd <= eventEnd <= trialEnd) { //if the event lies in the trial period 
+            } else if (trialStart < event.startTime && event.startTime < trialEnd || trialStart < event.endTime && event.endTime < trialEnd) { //if the event lies in the trial period 
                 errorRate++; 
-            } else if (trialStart == eventStart || trialEnd == eventEnd) { //if the event is exactly the same time
-                errorRate++
-            } //if none of those things are found, advance to the next event  
+            } else if (trialStart == event.startTime || trialEnd == event.endTime) { //if the event is exactly the same time
+                errorRate++;
+            } //if none of those things are found, advance to the next event without increasing the error rate
         }
     }
+    return errorRate;
 }
 
-module.exports.calculate = calculate;
+module.exports.findOptimalTime = findOptimalTime;

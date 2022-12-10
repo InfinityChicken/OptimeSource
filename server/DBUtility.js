@@ -1,13 +1,3 @@
-/* TODO:
--add files and set up:
-  -event creation/modification
-  -user signup
-  -smart calculation
-  -rsvping
-  -login
-  -event 
-*/
-
 var mysql = require("mysql");
 // var promise = require("promise");
 // var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
@@ -18,12 +8,14 @@ var mysql = require("mysql");
 //   database: process.env.DATABASE,
 // });
 
+eventObject(1);
 
+// <<<<<<< HEAD
 // CODE BELOW - use for testing, there is a premade row in the DB
 var database = mysql.createConnection({  
   host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
   user: "ServerConnection",
-  password: "AVNS_rbUMaoeCXCiKUJeABgR",
+  password: "AVNS_4pp41TTnCLwZafCzIyw",
   port: "25060",
   database: "defaultdb"
 });
@@ -51,6 +43,9 @@ var database = mysql.createConnection({
 
   //CODE AFTER ADVITAFICATION
 function eventObject(tag) {
+// =======
+// function eventObject(tag) { //TODO: check this
+// >>>>>>> ad1d721d01f47a2b099f0aed2e8e999556b65df6
 
   var event = {
       tag: tag, //string
@@ -65,7 +60,7 @@ function eventObject(tag) {
   };
 
 
-   database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
+   database.query("SELECT * FROM events WHERE eventID=1", function (err, result) {
     if (err) throw err;
     
     result.forEach((row) => {
@@ -87,10 +82,11 @@ function eventObject(tag) {
    return event;
 }
 
+// <<<<<<< HEAD
 
 
-var ff = eventObject("");
-  console.log(ff);
+// var ff = eventObject("");
+//   console.log(ff);
 
 function addEventToDB(event) {
 // object created for testing
@@ -111,6 +107,9 @@ function addEventToDB(event) {
   }
 
 function userObject(tag) {
+// =======
+// function userObject(tag) { //TODO: finish this
+// >>>>>>> ad1d721d01f47a2b099f0aed2e8e999556b65df6
   return {
     tag: tag, //TODO: get tag from html
     username: database.query(), //TODO: add parameters
@@ -122,18 +121,30 @@ function userObject(tag) {
   };
 }
 
+function addEvent(event) {
+    var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
+  database.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+}
+
+function addUser() {}
+
 function rsvpStatus(userTag, eventTag) {
   return {
     rsvpStatus: database.query(),
   }
 }
 
-// function userEvents(userTag) {
-//   return {
-//     events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
-//     rsvpStatus: database.query("SELECT "+userTag+""),
-//   };
-// }
+function userYesEvents(userTag) {
+  return {
+    events: database.query(`SELECT ${userTag}, eventID FROM RSVPs`),
+    rsvpStatus: database.query(`SELECT ${userTag}`),
+  };
+}
+
+function deleteEvent(eventTag) {}
 
 // function writeToEvents() { TODO: is this necessary?
 //   return null;
