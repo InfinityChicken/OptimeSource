@@ -1,4 +1,5 @@
 var mysql = require("mysql");
+<<<<<<< HEAD
 // var promise = require("promise");
 // var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
 //   host: process.env.HOST,
@@ -19,6 +20,21 @@ var database = mysql.createConnection({
   port: "25060",
   database: "defaultdb"
 });
+=======
+require('dotenv').config()
+
+var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
+  host: process.env.HOST,
+  user: process.env.USERNAME,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
+  database: 'defaultdb'
+});
+
+eventObject(1);
+
+function eventObject(tag) {
+>>>>>>> 2e5385241b301fbc81008689f942957e89f2ebe6
 
 // CODE BEFORE ADVITAFICATION (for reference, in case of confusion)
 // function eventObject(tag) {
@@ -51,8 +67,13 @@ function eventObject(tag) {
       tag: tag, //string
       name: "", //string
       description: "", //string
+<<<<<<< HEAD
       startTime: "", 
       endTime: ""
+=======
+      startTime: "",
+      endTime: "",
+>>>>>>> 2e5385241b301fbc81008689f942957e89f2ebe6
       // duration: "",
       // draft: "", //will return 0 or 1 -- 0 = false, 1 = true
       // progress: "", //will return in-progress, finished, or upcoming
@@ -125,7 +146,7 @@ function addEvent(event) {
     var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
   database.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("1 record inserted");
+    console.log(`1 new event added`);
   });
 }
 
@@ -158,6 +179,8 @@ function deleteEvent(eventTag) {}
 //   return null;
 // }
 
-module.exports.eventObject = eventObject;
-module.exports.userObject = userObject;
-module.exports.database = database;
+module.exports = {eventObject, userObject, database}
+
+// module.exports.eventObject = eventObject;
+// module.exports.userObject = userObject;
+// module.exports.database = database;
