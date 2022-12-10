@@ -72,8 +72,8 @@ function rsvpStatus(userTag, eventTag) {
 
 function userYesEvents(userTag) {
   return {
-    events: database.query("SELECT "+userTag+", eventID FROM RSVPs"),
-    rsvpStatus: database.query("SELECT "+userTag+""),
+    events: database.query(`SELECT ${userTag}, eventID FROM RSVPs`),
+    rsvpStatus: database.query(`SELECT ${userTag}`),
   };
 }
 
