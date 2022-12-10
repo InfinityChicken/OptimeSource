@@ -2,7 +2,7 @@
     body {
       font-family: 'Inter', sans-serif;
       font-family: 'Lato', sans-serif;
-
+      background-color: #abd1c6;
     }
     .event {
         height: 40%;
@@ -13,7 +13,7 @@
     }
     .navbar {
         overflow: hidden;
-        background-color: #333;
+        background-color: #004643;
         /* padding: 10px 10px; */
     }
     .navbar a {
@@ -39,7 +39,7 @@
         margin: 0;
     }
     .navbar a:hover, .dropdown:hover .dropbtn {
-        background-color: blue;
+        background-color: #f9bc60;
     }
     .dropdown-content {
         display: none;
