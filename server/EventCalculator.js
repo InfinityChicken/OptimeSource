@@ -9,31 +9,15 @@
 */
 
 
-// var DBUtility = require(DBUtility.js);
-
-// function calculate() { 
-    let possibleTimes = [[1670680800, 1670695200], [1670767200, 1670781600]];
-    let invitedUsers = ["InfinityChicken#3657", "pieris#2276"];
-
-    optimalTimes = findOptimalTime(possibleTimes, invitedUsers);
-
-    for(i=0; i<optimalTimes.length; i++) {
-        console.log(optimalTimes[i])
-    }
-
-    // return optimalTimes; 
-// }
+var DBUtility = require(DBUtility.js);
 
 function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
-    
-    duration = 7200; //TODO: remove testing stuff -- this is testing stuff
 
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
 
-
     for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all trial times
         let trialI = 0;
-        while (true) { //bc im lazy lay off me
+        while (true) {
             let trialStart = possibleTimes[perI][0] + (trialI*300);
             
             let trialEnd = trialStart + duration;
@@ -61,29 +45,21 @@ function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTim
 function findOverlap(trialStart, trialEnd, invitedUsers) {
     let errorRate = 0;
     for (let userI = 0; userI < invitedUsers.length; userI++) { //iterates through users
-        
-        // const userEvents = DBUtility.userEvents(invitedUsers[userI]); 
-        //TODO: add some way to filter out the events that have been rsvped no to
-
-        const userEvents = [[1670677200, 1670684400], [1670763600, 1670770800], [1670691600, 1670695200], [1670778000,1670781600]]; //TODO: this is test code, get rid of it later
-
-        //TODO: find a way to filter events 
+        const userEvents = DBUtility.userYesEvents(invitedUsers[userI]); 
 
         for (let eventI = 0; eventI < userEvents.length; eventI++) { //iterates through events
-            // const eventStart = database.query(eventI[eventI]); //TODO: add the special sauce (queries)
-            // const eventEnd = database.query(userEvents[eventI]); 
+            const event = DBUtility.eventObject(userEvents[eventI]);
 
-            const eventStart = userEvents[eventI][0];
-            const eventEnd = userEvents[eventI][1];
-
-            if (eventStart < trialStart && trialStart < eventEnd || eventStart < trialEnd && trialEnd < eventEnd) { //if the trial time starts/ends during the tested event
+            if (event.startTime < trialStart && trialStart < event.endTime || event.startTime < trialEnd && trialEnd < event.endTime) { //if the trial time starts/ends during the tested event
                 errorRate++;
-            } else if (trialStart < eventStart && eventStart < trialEnd || trialStart < eventEnd && eventEnd < trialEnd) { //if the event lies in the trial period 
+            } else if (trialStart < event.startTime && event.startTime < trialEnd || trialStart < event.endTime && event.endTime < trialEnd) { //if the event lies in the trial period 
                 errorRate++; 
-            } else if (trialStart == eventStart || trialEnd == eventEnd) { //if the event is exactly the same time
-                errorRate++
-            } //if none of those things are found, advance to the next event  
+            } else if (trialStart == event.startTime || trialEnd == event.endTime) { //if the event is exactly the same time
+                errorRate++;
+            } //if none of those things are found, advance to the next event without increasing the error rate
         }
     }
     return errorRate;
 }
+
+module.exports.findOptimalTime = findOptimalTime;
