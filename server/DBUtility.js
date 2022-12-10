@@ -9,23 +9,24 @@
 */
 
 var mysql = require("mysql");
-var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  port: process.env.PORT,
-  database: process.env.DATABASE,
-});
+// var promise = require("promise");
+// var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
+//   host: process.env.HOST,
+//   user: process.env.USER,
+//   password: process.env.PASSWORD,
+//   port: process.env.PORT,
+//   database: process.env.DATABASE,
+// });
 
 
 // CODE BELOW - use for testing, there is a premade row in the DB
-// var database = mysql.createConnection({  
-//   host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
-//   user: "ServerConnection",
-//   password: "AVNS_09XmkxXWtSdmICyUdMk",
-//   port: "25060",
-//   database: "defaultdb"
-// });
+var database = mysql.createConnection({  
+  host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
+  user: "ServerConnection",
+  password: "AVNS_rbUMaoeCXCiKUJeABgR",
+  port: "25060",
+  database: "defaultdb"
+});
 
 // CODE BEFORE ADVITAFICATION (for reference, in case of confusion)
 // function eventObject(tag) {
@@ -51,36 +52,45 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   //CODE AFTER ADVITAFICATION
 function eventObject(tag) {
 
-  let event = {
+  var event = {
       tag: tag, //string
       name: "", //string
       description: "", //string
       startTime: "", 
-      endTime: "",
+      endTime: ""
       // duration: "",
       // draft: "", //will return 0 or 1 -- 0 = false, 1 = true
       // progress: "", //will return in-progress, finished, or upcoming
       //color: database.query(),
-  }
+  };
 
-  database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
+
+   database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
     if (err) throw err;
-      result.forEach((row) => {
+    
+    result.forEach((row) => {
+      event.name = row.name;
+      event.description = row.description;
+      event.startTime = row.startTime;
+      event.endTime = row.endTime;
+      console.log("in forEach");
+      console.log("row.name : " + row.name);
+      // event.eventType = row.eventType;
 
-    // console.log(row.description);
-    event.name = row.name;
-    event.description = row.description;
-    event.startTime = row.startTime;
-    event.endTime = row.endTime;
-    console.log(event.description);
-    event.eventType = row.eventType;
-
-    console.log(event);
+      database.end();
   });
   });
-  console.log(event);
-  return event;
+
+
+   console.log(event);
+
+   return event;
 }
+
+
+
+var ff = eventObject("");
+  console.log(ff);
 
 function addEventToDB(event) {
 // object created for testing
