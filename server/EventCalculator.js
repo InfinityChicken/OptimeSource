@@ -30,6 +30,7 @@ function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTim
 
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
 
+
     for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all trial times
         let trialI = 0;
         while (true) { //bc im lazy lay off me
@@ -64,7 +65,7 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
         // const userEvents = DBUtility.userEvents(invitedUsers[userI]); 
         //TODO: add some way to filter out the events that have been rsvped no to
 
-        const userEvents = [["1670677200", "1670684400"], ["1670763600", "1670770800"], ["1670691600", "1670695200"], ["1670778000","1670781600"]]; //TODO: this is test code, get rid of it later
+        const userEvents = [[1670677200, 1670684400], [1670763600, 1670770800], [1670691600, 1670695200], [1670778000,1670781600]]; //TODO: this is test code, get rid of it later
 
         //TODO: find a way to filter events 
 
@@ -75,9 +76,9 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
             const eventStart = userEvents[eventI][0];
             const eventEnd = userEvents[eventI][1];
 
-            if (eventStart < trialStart < trialEnd || eventStart < trialEnd < trialEnd) { //if the trial time starts/ends during the tested event
+            if (eventStart < trialStart && trialStart < eventEnd || eventStart < trialEnd && trialEnd < eventEnd) { //if the trial time starts/ends during the tested event
                 errorRate++;
-            } else if (trialStart < eventStart < eventEnd || trialEnd < eventEnd < trialEnd) { //if the event lies in the trial period 
+            } else if (trialStart < eventStart && eventStart < trialEnd || trialStart < eventEnd && eventEnd < trialEnd) { //if the event lies in the trial period 
                 errorRate++; 
             } else if (trialStart == eventStart || trialEnd == eventEnd) { //if the event is exactly the same time
                 errorRate++
