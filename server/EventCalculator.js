@@ -30,10 +30,10 @@ function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTim
 
     let optimalTimes = [[null, null, Number.MAX_VALUE]]; //array1 stores optimal times, array2 stores starttime, endtime, and errorate
 
-    for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all events
-        eventI = 0;
+    for (let perI = 0; perI < possibleTimes.length; perI++) { //loops over all trial times
+        let trialI = 0;
         while (true) { //bc im lazy lay off me
-            let trialStart = possibleTimes[perI][0] + (eventI*300);
+            let trialStart = possibleTimes[perI][0] + (trialI*300);
             
             let trialEnd = trialStart + duration;
             
@@ -49,8 +49,8 @@ function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTim
                 optimalTimes = [];
                 optimalTimes.push([trialStart, trialEnd, errorRate]);
             }
-
-            eventI++;
+            
+            trialI++;
         }
     }
 
