@@ -1,11 +1,9 @@
 module.exports = {
-    generateTag: function(name) {
-        let tag = name + "#";
-        for (i=1; i<=4; i++) {
-            let random = (Math.floor(Math.random() * 10));
-            tag += random;
-        }
-        if (!tag) generateTag(name) //TODO: add an sql query here to check if a tag preexists
+    baseGenerate: function(name) {
+        var tag = name + "#";
+        for (i=0; i<4; i++) tag += Math.floor(Math.random() * 10)
+        if (!tag) tag = baseGenerate(name) //TODO: add an sql query here to check if a tag preexists
         return tag;
-    }
+    },
+    generateTag: function(name) { return this.baseGenerate(name) }
 }
