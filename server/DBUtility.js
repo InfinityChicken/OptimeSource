@@ -9,7 +9,7 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   database: 'defaultdb'
 });
 
-eventObject(1);
+// eventObject(1); | The base function to fetch an event.
 
 function eventObject(tag) {
 
