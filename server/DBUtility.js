@@ -91,6 +91,8 @@ function deleteEvent(eventTag) {}
 //   return null;
 // }
 
-module.exports.eventObject = eventObject;
-module.exports.userObject = userObject;
-module.exports.database = database;
+module.exports = {eventObject, userObject}
+
+// module.exports.eventObject = eventObject;
+// module.exports.userObject = userObject;
+// module.exports.database = database;
