@@ -76,11 +76,11 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
             const eventStart = userEvents[eventI][0];
             const eventEnd = userEvents[eventI][1];
 
-            if (eventStart < trialStart && trialStart < eventEnd || eventStart < trialEnd && trialEnd < eventEnd) { //if the trial time starts/ends during the tested event
+            if (eventStart < trialStart && trialStart < eventEnd || eventStart < trialEnd && trialEnd < eventEnd) { // if the trial time starts/ends during the tested event
                 errorRate++;
-            } else if (trialStart < eventStart && eventStart < trialEnd || trialStart < eventEnd && eventEnd < trialEnd) { //if the event lies in the trial period 
+            } else if (trialStart < eventStart && eventStart < trialEnd || trialStart < eventEnd && eventEnd < trialEnd) { // if the event lies in the trial period 
                 errorRate++; 
-            } else if (trialStart == eventStart || trialEnd == eventEnd) { //if the event is exactly the same time
+            } else if (trialStart == eventStart || trialEnd == eventEnd) { //if the event starts or ends at the exact same time
                 errorRate++
             } //if none of those things are found, advance to the next event  
         }
