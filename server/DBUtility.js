@@ -62,7 +62,7 @@ function addEvent(event) {
   });
 }
 
-function addUser()
+function addUser() {}
 
 function rsvpStatus(userTag, eventTag) {
   return {
@@ -77,7 +77,7 @@ function userYesEvents(userTag) {
   };
 }
 
-function deleteEvent(eventTag)
+function deleteEvent(eventTag) {}
 
 // function writeToEvents() { TODO: is this necessary?
 //   return null;

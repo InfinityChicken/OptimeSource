@@ -1,3 +1,5 @@
+db = require('./DBUtility.js')
+
 module.exports = {
     baseGenerate: function(name) {
         var tag = name + "#";
