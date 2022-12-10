@@ -1,13 +1,11 @@
-function generateTag(name) {
-    let tag = name + "#";
-    for (i=1; i<=4; i++) {
-        let random = (Math.floor(Math.random() * 10)).toString();
-        tag += random;
-    }   
+db = require('./DBUtility.js')
 
-    if (tag = null) { //TODO: add an sql query here to check if a tag preexists
-        generateTag(name);
-    }
-
-    return tag;
+module.exports = {
+    baseGenerate: function(name) {
+        var tag = name + "#";
+        for (i=0; i<4; i++) tag += Math.floor(Math.random() * 10)
+        if (!tag /* replace with sql condition */ ) tag = baseGenerate(name) //TODO: add an sql query here to check if a tag preexists
+        return tag;
+    },
+    generateTag: function(name) { return this.baseGenerate(name) }
 }
