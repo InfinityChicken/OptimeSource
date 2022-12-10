@@ -1,21 +1,23 @@
 var mysql = require("mysql");
+require('dotenv').config()
+
 var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
   host: process.env.HOST,
-  user: process.env.USER,
+  user: process.env.USERNAME,
   password: process.env.PASSWORD,
   port: process.env.PORT,
-  database: process.env.DATABASE,
+  database: 'defaultdb'
 });
 
 eventObject(1);
 
-function eventObject(tag) { //TODO: check this
+function eventObject(tag) {
 
   let event = {
       tag: tag, //string
       name: "", //string
       description: "", //string
-      startTime: "", 
+      startTime: "",
       endTime: "",
       // duration: "",
       // draft: "", //will return 0 or 1 -- 0 = false, 1 = true
