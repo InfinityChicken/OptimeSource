@@ -9,7 +9,7 @@
 */
 
 
-var DBUtility = require(DBUtility.js);
+var DBUtility = require(__dirname + '/DBUtility.js');
 
 function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTimes: array of arrays, array1 stores possible times, array2 stores start time, end time
 

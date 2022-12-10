@@ -58,7 +58,7 @@ function addEvent(event) {
     var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
   database.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("1 record inserted");
+    console.log(`1 new event added`);
   });
 }
 
@@ -91,7 +91,7 @@ function deleteEvent(eventTag) {}
 //   return null;
 // }
 
-module.exports = {eventObject, userObject}
+module.exports = {eventObject, userObject, database}
 
 // module.exports.eventObject = eventObject;
 // module.exports.userObject = userObject;
