@@ -21,6 +21,8 @@
 <!--parameters--> 
 <p>Userame</p>
 <input type="text" id="username" />
+<p>Email</p>
+<input type="text" id="email" />
 <p>Password</p>
 <input type="password" id="password" />
 
@@ -32,10 +34,12 @@
 
 <script>
 
-    function signup() {
+function signup() {
         username = document.getElementById("username").value;
+        email = document.getElementById("email").value;
         password = document.getElementById("password").value;
         window.location.href='/signupwith?username='+username+'&password='+password
+  
     }
   
 </script>
