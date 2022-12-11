@@ -41,13 +41,17 @@ function eventObject(tag) {
   });
   console.log(event);
   return event;
-}
+}XMLDocument
 
 async function userObject(username) { //TODO: finish this
   return new Promise((resolve, reject) => {
     user = {}
+    console.log('querying...')
     database.query(`SELECT * FROM user_info WHERE id='${username}'`, function (err, result, fields) {
+      console.log('queried')
+      if (err) console.log(err)
       if (err) throw err;
+      if (result.length == 0) return(resolve(null))
         result.forEach((row) => {
         // console.log(row.description);
           user = {
@@ -62,36 +66,38 @@ async function userObject(username) { //TODO: finish this
   })
 }
 
-function addEvent(event) {
-    var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
-  database.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log(`1 new event added`);
-  });
-}
-
-function addUser() {}
-
 function rsvpStatus(userTag, eventTag) {
   return {
     rsvpStatus: database.query(),
   }
 }
 
-function userYesEvents(userTag) {
+function userEvents(userTag, status) { //return the events that a user is a part of -- scan RSVPs; if there is a status specific (status that isn't null: yes, no, maybe, or pending), return only the RSVPs that are said status; modify the database if necessary
   return {
     events: database.query(`SELECT ${userTag}, eventID FROM RSVPs`),
     rsvpStatus: database.query(`SELECT ${userTag}`),
   };
 }
 
-function userExists(username) {
-  return new Promise((resolve, reject) => {
-    user = {}
-  })
+function eventUsers(event) {
+  return new Promise((resolve, reject) => [
+    database.query(``)
+  ])
 }
 
-function deleteEvent(eventTag) {}
+function deleteEvent(eventTag) {} //must also delete corresponding RSVPs
+
+function deleteUser(userTag) {} //must also delete corresponding RSVPs
+
+function addEvent(event) {
+  var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
+database.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log(`1 new event added`);
+});
+}
+
+function addUser() {}
 
 // function writeToEvents() { TODO: is this necessary?
 //   return null;
