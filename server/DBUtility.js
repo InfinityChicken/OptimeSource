@@ -1,11 +1,20 @@
 var mysql = require("mysql");
 require('dotenv').config()
 
-var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
+
+console.log({ //to use this, you must whitelist your ip address in digitalocean 
   host: process.env.HOST,
   user: process.env.USERNAME,
   password: process.env.PASSWORD,
   port: process.env.PORT,
+  database: 'defaultdb'
+})
+
+var database = mysql.createConnection({ //to use this, you must whitelist your ip address in digitalocean 
+  host: "db-mysql-sfo2-08056-do-user-12828580-0.b.db.ondigitalocean.com",
+  user: "ServerConnection",
+  password: "AVNS_4pp41TTnCLwZafCzIyw",
+  port: 25060,
   database: 'defaultdb'
 });
 
@@ -41,7 +50,7 @@ function eventObject(tag) {
   });
   console.log(event);
   return event;
-}XMLDocument
+}
 
 async function userObject(username) { //TODO: finish this
   return new Promise((resolve, reject) => {
@@ -52,37 +61,38 @@ async function userObject(username) { //TODO: finish this
       if (err) console.log(err)
       if (err) throw err;
       if (result.length == 0) return(resolve(null))
-        result.forEach((row) => {
-        // console.log(row.description);
-          user = {
-            id: row.id,
-            email: row.email,
-            password: row.password,
-            tag: row.tag
-          }
-        resolve(user);
-      });
+      resolve(result[0]);
     });
   })
 }
 
 function rsvpStatus(userTag, eventTag) {
-  return {
-    rsvpStatus: database.query(),
-  }
+  return new Promise(async (resolve, reject) => {
+    database.query(`SELECT * FROM RSVPs WHERE user='${userTag}'`, function (err, result, fields) {
+      if (result.length == 0) return(resolve(null)) // not invited
+      result = result.filter(result => result.eventID == eventTag)
+      resolve(result[0])
+    })
+  })
 }
 
 function userEvents(userTag, status) { //return the events that a user is a part of -- scan RSVPs; if there is a status specific (status that isn't null: yes, no, maybe, or pending), return only the RSVPs that are said status; modify the database if necessary
-  return {
-    events: database.query(`SELECT ${userTag}, eventID FROM RSVPs`),
-    rsvpStatus: database.query(`SELECT ${userTag}`),
-  };
+  return new Promise(async (resolve, reject) => {
+    database.query(`SELECT * FROM RSVPs WHERE user='${userTag}'`, function (err, result, fields) {
+      if (result.length == 0) return(resolve([]))
+      if (status) result = result.filter(r => r.RSVPstatus == status)
+      resolve(result)
+    })
+  })
 }
 
 function eventUsers(event) {
-  return new Promise((resolve, reject) => [
-    database.query(``)
-  ])
+  return new Promise(async (resolve, reject) => {
+    database.query(`SELECT * FROM RSVPs WHERE eventID='${event}'`, function (err, result, fields) {
+      if (result.length == 0) return(resolve([]))
+      resolve(result)
+    })
+  })
 }
 
 function deleteEvent(eventTag) {} //must also delete corresponding RSVPs
@@ -97,7 +107,9 @@ database.query(sql, function (err, result) {
 });
 }
 
-function addUser() {}
+function addUser() {
+
+}
 
 // function writeToEvents() { TODO: is this necessary?
 //   return null;
@@ -111,7 +123,7 @@ function addUser() {}
 //   return null;
 // }
 
-module.exports = {eventObject, userObject, database}
+module.exports = {eventObject, userObject, rsvpStatus, userEvents, eventUsers, addEvent, addUser}
 
 // module.exports.eventObject = eventObject;
 // module.exports.userObject = userObject;
