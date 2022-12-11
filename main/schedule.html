@@ -3,20 +3,21 @@
 
 
 <script>
-    if (document.cookie.length > 0) {
-        function extractCookies(cookieStr) {
-    return cookieStr
-      .match(/(^|(?<=, ))[^=;,]+=[^;]+/g)
-      .map(cookie => cookie.split('=').map(v => v.trim()))
-      .filter(v => v[0].length && v[1].length)
-      .reduce((builder, cur) => {
-        builder[cur[0]] = cur[1]
-        return builder
-      }, {})
-}
-    } else {
-        return {};
-    }
+    function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return null;
+  }
 cookies = extractCookies(document.cookie)
     function submit() {
         ename = document.getElementById("eventname").value;
@@ -24,7 +25,7 @@ cookies = extractCookies(document.cookie)
         estarttime = document.getElementById("eventstarttime").value;
         eendtime = document.getElementById("eventendtime").value;
         einfo = document.getElementById("eventinfo").value;
-        window.location.href=`/scheduleapi?name=${ename}&start=${estarttime}&finish=${eendtime}&info=${einfo}&month=${eventdate[1]}&year=${eventdate[0]}&day=${eventdate[2]}&email=${cookies.email}`
+        window.location.href=`/scheduleapi?name=${ename}&start=${estarttime}&finish=${eendtime}&info=${einfo}&month=${eventdate[1]}&year=${eventdate[0]}&day=${eventdate[2]}&email=${getCookie('email')}`
     }
 </script>
 

@@ -17,10 +17,15 @@ app.get('/loginwith', async (req, res) => {
     /* Login Requests */
     userparam = req.query['username']
     passparam = req.query['password']
-    res.cookie('email', userparam) /* The code to log the user in. Rn it doesn't use the database */
-    res.redirect('/') /* Redirects the user to the home page */
-    
-
+    console.log(userparam)
+    user = await DBUtility.userObject(userparam)
+    if (!user) return res.redirect('/loginwith?failed=true')
+    if (user && user.password !== passparam) return res.redirect('/loginwith?failed=true')
+    console.log(user)
+    res.cookie('tag', user.tag)
+    res.cookie('id', user.id) /* The code to log the user in. Rn it doesn't use the database */
+    res.cookie('email', user.email)
+    res.redirect(`/web/index.html?settag=${user.tag}&setid=${user.id}&setemail=${user.email}`) /* Redirects the user to the home page */
 })
 
 app.get('/scheduleapi', async (req, res) => {
