@@ -90,9 +90,9 @@ if (upcoming.length == 0) {
 }
 
 
-if (upcoming.length < 5) {
-    document.querySelector('#event5').innerHTML = ":("
-    if (upcoming.length < 4) document.querySelector('#event4').innerHTML = ":("
-    if (upcoming.length < 3) document.querySelector('#event3').innerHTML = ":("
-    if (upcoming.length < 2) document.querySelector('#event2').innerHTML = ":("
+if (upcoming.length < 6) {
+    document.querySelector('#event5').innerHTML = "Fifth Event"
+    if (upcoming.length < 4) document.querySelector('#event4').innerHTML = "Fourth Event"
+    if (upcoming.length < 3) document.querySelector('#event3').innerHTML = "Third Event"
+    if (upcoming.length < 2) document.querySelector('#event2').innerHTML = "Second Event"
 }

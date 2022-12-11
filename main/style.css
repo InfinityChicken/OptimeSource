@@ -89,18 +89,16 @@
         margin-top: 4.5%;
 /*          margin-left: 40px;  */
     }
-    .eventsection {
-        height: 85%;
-/*         width: 100%; */
-        width: 200px;
-        position: absolute;
-        z-index: 1;
-        background-color: #e3f6f5;
+    /* .eventsection { */
+        /* height: 85%; */
+        /* width: 200px; */
+        /* position: absolute; */
+        /* z-index: 1; */
+        /* background-color: #e3f6f5; */
 
-        overflow-x: hidden;
-/*         padding-top: 10px; */
-        margin-left: 0;
-    }
+        /* overflow-x: hidden; */
+        /* margin-left: 0; */
+    /* } */
 
     .rsvps {
         height: 82%;
@@ -149,7 +147,7 @@
     
 }
 
-#event1{
+/* #event1{
     position: relative;
     display: block;
     box-shadow: 2px 2px #97bab0;
@@ -167,4 +165,4 @@
     border-radius: 15%;
     height: 50%;
 }
-
+ */
