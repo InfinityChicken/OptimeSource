@@ -1,6 +1,7 @@
 const express = require("express") /* Imports express (the server module) */
 var app = express() /* Makes a new server */
 var cookieParser = require('cookie-parser')
+const { addUser } = require("./server/DBUtility.js")
 app.use(cookieParser())
 DBUtility = require('./server/DBUtility.js')
 
@@ -26,6 +27,11 @@ app.get('/loginwith', async (req, res) => {
     res.cookie('id', user.id) /* The code to log the user in. Rn it doesn't use the database */
     res.cookie('email', user.email)
     res.redirect(`/web/index.html?settag=${user.tag}&setid=${user.id}&setemail=${user.email}`) /* Redirects the user to the home page */
+})
+
+app.get('/signupwith', async (req, res) => {
+    user = await addUser(req.query['username'], req.query['password'])
+    res.redirect('/web/login.html')
 })
 
 app.get('/scheduleapi', async (req, res) => {
