@@ -18,30 +18,39 @@
     <h1>Find an Optimal Time!</h1>
     <p>Our exclusive algorithm will search through your friends' calendars to find the best time for your event based on their availability and when the event can be! Even if it doesn't give you a good time, why don't you give it a try?</p>
 
-  <body>
+<body>
     <p style="display: inline-block;">Event Date</p>
     <input style="display: inline-block" type="date" id="date"><br>
     <p style="display: inline-block;">Event Time</p>
     <input style="display: inline-block" type="time" id="eventstart">
     <input style="display: inline-block" type="time" id="eventend"><br>
-  <p style="display: inline-block;">add users</p>
+    <p style="display: inline-block;">add users</p>
     <input style="display: inline-block" type="text" id="user">
     
-    <button onclick="finduser()">add users</button>
+    <button onclick="displayuser()">add users</button>
     <button onclick="calculate()">calculate the event!</button>
-
-    <p>owo available times lawl</p>
-
+    <ul id="myList"></ul>
+    <p id = "availabletimesdisplay">owo available times lawl</p>
 </body>
   
 <script>
 
-    function finduser(){
-      x = 1;
+    let data = [];
+
+    function displayuser(){
+        data.push(document.getElementById("user").value);
+        document.getElementById("myList").innerHTML = "";
+        let list = document.getElementById("myList");
+        data.forEach((item) => {
+            let li = document.createElement("li");
+            li.innerText = item;
+            list.appendChild(li);
+        });
+        document.getElementById("usersdisplay").innerHTML = document.getElementById("user").value;
     }
     function calculate() {
-        date = document.getElementById("date").value
-        time = document.getElementById("time").value
+        date = document.getElementById("date").value;
+        time = document.getElementById("time").value;
     }
 </script>
     
