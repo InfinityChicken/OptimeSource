@@ -9,8 +9,6 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   database: 'defaultdb'
 });
 
-console.log(eventObject(1)); // | The base function to fetch an event.
-
 function eventObject(tag) {
 
   let event = {
@@ -33,23 +31,16 @@ function eventObject(tag) {
       event.description = row.description;
       event.startTime = row.startTime;
       event.endTime = row.endTime;
-      console.log(event.description);
       event.eventType = row.eventType;
-
-      console.log(event);
     });
   });
-  console.log(event);
   return event;
-}XMLDocument
+}
 
-async function userObject(username) { //TODO: finish this
+async function userObject(username) {
   return new Promise((resolve, reject) => {
     user = {}
-    console.log('querying...')
     database.query(`SELECT * FROM user_info WHERE id='${username}'`, function (err, result, fields) {
-      console.log('queried')
-      if (err) console.log(err)
       if (err) throw err;
       if (result.length == 0) return(resolve(null))
         result.forEach((row) => {
@@ -79,39 +70,27 @@ function userEvents(userTag, status) { //return the events that a user is a part
   };
 }
 
-function eventUsers(event) {
-  return new Promise((resolve, reject) => [
-    database.query(``)
-  ])
-}
-
-function deleteEvent(eventTag) {} //must also delete corresponding RSVPs
-
-function deleteUser(userTag) {} //must also delete corresponding RSVPs
-
 function addEvent(event) {
   var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
 database.query(sql, function (err, result) {
   if (err) throw err;
-  console.log(`1 new event added`);
 });
 }
 
-function addUser() {}
+function addUser(user) {
+  var sql = "INSERT INTO events (id, password) VALUES ('" + user.username + "', '" + user.pasword + "')";
+database.query(sql, function (err, result) {
+  if (err) throw err;
+});
+}
 
-// function writeToEvents() { TODO: is this necessary?
-//   return null;
-// }
+function modifyEvent (eventID, field, newValue){
 
-// function writeToUsers() {
-//   return null;
-// }
+}
 
-// function writeToRSVPs() {
-//   return null;
-// }
+//delete things?
 
-module.exports = {eventObject, userObject, database}
+module.exports = {eventObject, userObject, userEvents, rsvpStatus, addEvent, addUser}
 
 // module.exports.eventObject = eventObject;
 // module.exports.userObject = userObject;

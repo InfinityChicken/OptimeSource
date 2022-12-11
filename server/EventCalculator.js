@@ -1,5 +1,3 @@
-//TODO: export calculator, connect the calculator
-
 /* how the code works:
 -makes some variables
 -loops through possible times
@@ -63,4 +61,4 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
 }
 
 module.exports.findOptimalTime = findOptimalTime;
-
+module.exports.findOverlap = findOverlap;

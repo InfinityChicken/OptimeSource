@@ -1,11 +1,20 @@
 db = require('./DBUtility.js')
 
-module.exports = {
-    baseGenerate: function(name) {
-        var tag = name + "#";
-        for (i=0; i<4; i++) tag += Math.floor(Math.random() * 10)
-        if (!tag /* replace with sql condition */ ) tag = baseGenerate(name) //TODO: add an sql query here to check if a tag preexists
-        return tag;
-    },
-    generateTag: function(name) { return this.baseGenerate(name) }
+console.log(getSimpleDate(1670792400));
+
+function getSimpleDate(sTime) {
+    const date = new Date(sTime*1000);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    
+    
+    if (minutes<10) {
+        return (month+"/"+day+"/"+year+" "+hours+":"+minutes);    
+    }
+    return (month+"/"+day+"/"+year+" "+hours+":"+minutes);
 }
+
+module.exports.getSimpleDate = getSimpleDate;
