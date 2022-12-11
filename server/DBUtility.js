@@ -7,6 +7,7 @@ console.log({ //to use this, you must whitelist your ip address in digitalocean
   user: process.env.USERNAME,
   password: process.env.PASSWORD,
   port: process.env.PORT,
+<<<<<<< Updated upstream
   database: 'defaultdb'
 })
 
@@ -16,6 +17,9 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   password: "AVNS_4pp41TTnCLwZafCzIyw",
   port: 25060,
   database: 'defaultdb'
+=======
+  database: process.env.DATABASE,
+>>>>>>> Stashed changes
 });
 
 console.log(eventObject(1)); // | The base function to fetch an event.
