@@ -45,7 +45,7 @@ function findOptimalTime(possibleTimes, invitedUsers, duration) {  //possibleTim
 function findOverlap(trialStart, trialEnd, invitedUsers) {
     let errorRate = 0;
     for (let userI = 0; userI < invitedUsers.length; userI++) { //iterates through users
-        const userEvents = DBUtility.userYesEvents(invitedUsers[userI]); 
+        const userEvents = DBUtility.userEvents(invitedUsers[userI]); 
 
         for (let eventI = 0; eventI < userEvents.length; eventI++) { //iterates through events
             const event = DBUtility.eventObject(userEvents[eventI]);
@@ -63,3 +63,4 @@ function findOverlap(trialStart, trialEnd, invitedUsers) {
 }
 
 module.exports.findOptimalTime = findOptimalTime;
+

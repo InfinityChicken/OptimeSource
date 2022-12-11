@@ -19,8 +19,8 @@ app.get('/loginwith', async (req, res) => {
     passparam = req.query['password']
     console.log(userparam)
     user = await DBUtility.userObject(userparam)
-    if (!user) return res.redirect('/loginwith?failed=true')
-    if (user && user.password !== passparam) return res.redirect('/loginwith?failed=true')
+    if (!user) return res.redirect('/web/login.html?failed=true')
+    if (user && user.password !== passparam) return res.redirect('/web/login.html?failed=true')
     console.log(user)
     res.cookie('tag', user.tag)
     res.cookie('id', user.id) /* The code to log the user in. Rn it doesn't use the database */
