@@ -1,5 +1,3 @@
-
-
 var loggedin = false
 function getCookie(cname) {
     let name = cname + "=";
@@ -90,6 +88,8 @@ if (upcoming.length == 0) {
     endTime = `${finish.getHours()}:${finish.getMinutes()<10?"0":""}${finish.getMinutes().toString()}`
     event1.innerHTML=`${upcoming[0].name}<br><p style="font-size: 20px;">${date} ${startTime}-${endTime}<br>${upcoming[0].description}<br>Host: ${upcoming[0].host}</p>`
 }
+
+
 if (upcoming.length < 5) {
     document.querySelector('#event5').innerHTML = ":("
     if (upcoming.length < 4) document.querySelector('#event4').innerHTML = ":("

@@ -1,17 +1,42 @@
-<h1>Login</h1>
-<p>Note: Adveeta can u make this page look better.</p>
+<link href="style.css" rel="stylesheet"/>
+<!--failed login id--> 
 
-<p>Email</p>
+<!--navbar--> 
+<div class="navbar">
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                Events
+            </button>
+            <div class="dropdown-content">
+                <a href="optime.html">Group Events (Smart Scheduler)</a>
+                <a href="schedule.html">Schedule a Group Event</a>
+                <a href="personal_events.html">Schedule a Personal Event</a>
+            </div>
+        </div>
+        <a href="login.html" id="logindisplay"></a>
+    </div>
+<!--title--> 
+<h1>Sign Up</h1>
+<!--parameters--> 
+<p>Userame</p>
 <input type="text" id="username" />
 <p>Password</p>
 <input type="password" id="password" />
 
+<div><div>
+
 <button onclick="login()">Login</button>
+<div><div>
+  
 
 <script>
+
     function login() {
-        username = document.getElementById("username").value
-        password = document.getElementById("password").value
-        window.location.href="/loginwith?username="+username+"&password="+password
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+        window.location.href="/loginwith?username="+username+"&password="+password;
+        loginfailed(); 
     }
+  
 </script>

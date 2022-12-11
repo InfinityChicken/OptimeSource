@@ -2,8 +2,8 @@
     body {
       font-family: 'Inter', sans-serif;
       font-family: 'Lato', sans-serif;
-      background-color: white;
-/*#e3f6f5; */
+      background-color: #e3f6f5;
+      /*#e3f6f5; */
     }
 
     .event {
@@ -12,12 +12,18 @@
 /*         margin: 10px 10px; */
 /*         padding: 10px;jj\ */
         vertical-align: top;
+
     }
     .navbar {
         overflow: hidden;
         background-color: #abd1c6;
-        
+/*         height: 60px; */
+        margin: auto;
         /* padding: 10px 10px; */
+      z-index: 1;
+      position: relative; 
+
+      
     }
     .navbar a {
         float: left;
@@ -81,18 +87,21 @@
         overflow-x: hidden;
         padding-top: 10px;
         margin-top: 4.5%;
-/*         margin-left: 40px; */
+/*          margin-left: 40px;  */
     }
     .eventsection {
         height: 85%;
-        /* width: 160px; */
+/*         width: 100%; */
+        width: 200px;
         position: absolute;
         z-index: 1;
         background-color: #e3f6f5;
+
         overflow-x: hidden;
-        padding-top: 10px;
-        margin-left: 20%;
+/*         padding-top: 10px; */
+        margin-left: 0;
     }
+
     .rsvps {
         height: 82%;
         /* width: 160px; */
@@ -130,3 +139,32 @@
         padding: 10px;
         border: none;
     }
+
+.eventsection{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    overflow: hidden;
+    
+}
+
+#event1{
+    position: relative;
+    display: block;
+    box-shadow: 2px 2px #97bab0;
+    border: 2px solid ;
+    
+    border-radius: 15%;
+    height: 50%;
+}
+#event2{
+    position: relative;
+    display: block;
+    box-shadow: 2px 2px #97bab0;
+    border: 2px solid ;
+    margin-left: 40px;
+    border-radius: 15%;
+    height: 50%;
+}
+
