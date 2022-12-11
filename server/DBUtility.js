@@ -10,23 +10,17 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
 });
 
 function eventObject(tag) {
-
   let event = {
-      tag: tag, //string
-      name: "", //string
-      description: "", //string
+      tag: tag,
+      name: "",
+      description: "",
       startTime: "",
       endTime: "",
-      // duration: "",
-      // draft: "", //will return 0 or 1 -- 0 = false, 1 = true
-      // progress: "", //will return in-progress, finished, or upcoming
-      //color: database.query(),
   }
 
-  database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
+  database.query("SELECT * FROM events WHERE eventID=", function (err, result, fields) { //TODO: make this work
     if (err) throw err;
       result.forEach((row) => {
-      // console.log(row.description);
       event.name = row.name;
       event.description = row.description;
       event.startTime = row.startTime;
@@ -55,12 +49,6 @@ async function userObject(username) {
       });
     });
   })
-}
-
-function rsvpStatus(userTag, eventTag) {
-  return {
-    rsvpStatus: database.query(),
-  }
 }
 
 function userEvents(userTag, status) { //return the events that a user is a part of -- scan RSVPs; if there is a status specific (status that isn't null: yes, no, maybe, or pending), return only the RSVPs that are said status; modify the database if necessary
