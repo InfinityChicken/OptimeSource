@@ -1,4 +1,4 @@
-Variables that are going to be loaded & parsed from the database */
+
 
 var loggedin = false
 function extractCookies(cookieStr) {
