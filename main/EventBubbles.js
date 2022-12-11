@@ -11,7 +11,7 @@ function fillHomeBubbles(username) {
         bubble.getElementByID("name").innerHTML=event.name;
         bubble.getElementByID("desc").innerHTML=event.description;
         bubble.getElementByID("host").innerHTML=event.host;
-        bubble.getElementByID("time").innerHTML=null;
+        bubble.getElementByID("time").innerHTML=GeneralUtility.convertTime(event.startTime)+"-"+GeneralUtility.convertTime(event.endTime);
     }
 
     return null;

@@ -1,7 +1,8 @@
-db = require('./DBUtility.js')
+// db = require('./DBUtility.js');
 
-function convertTime(msTime) {
-    return null;
+function convertTime(sTime) {
+    let date = new Date(sTime*1000);
+    console.log(date);
 }
 
-module.exports.convertTime = convertTime;
+convertTime(1670709600);
