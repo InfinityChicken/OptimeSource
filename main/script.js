@@ -1,21 +1,28 @@
 
 
 var loggedin = false
-function extractCookies(cookieStr) {
-    if (document.cookie.length > 0) {
-        return cookieStr
-      .match(/(^|(?<=, ))[^=;,]+=[^;]+/g)
-      .map(cookie => cookie.split('=').map(v => v.trim()))
-      .filter(v => v[0].length && v[1].length)
-      .reduce((builder, cur) => {
-        builder[cur[0]] = cur[1]
-        return builder
-      }, {})
-    } else { return {} }
-}
-cookies = extractCookies(document.cookie)
-if (cookies.email) cookies.email = cookies.email.replace('%40', '@')
-if (cookies.email) loggedin=true
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return null;
+  }
+if (getCookie('id')) loggedin=true
+
+urlParams = new URLSearchParams(window.location.search)
+if (urlParams.get('settag')) document.cookie = `tag=${urlParams.get('settag')}; expires=Mon, 26 Dec 2022 12:00:00 UTC; path=/`
+if (urlParams.get('setid')) document.cookie = `id=${urlParams.get('setid')}; expires=Mon, 26 Dec 2022 12:00:00 UTC; path=/`
+if (urlParams.get('setemail')) document.cookie = `email=${urlParams.get('setemail').replace('%40', '@')}; expires=Mon, 26 Dec 2022 12:00:00 UTC; path=/`
+
 var rsvps = [
     {
         id: 1,
@@ -52,7 +59,7 @@ var upcoming = [
 if (loggedin == false) {
     document.getElementById("logindisplay").innerHTML="Log In"
 } else {
-    document.getElementById("logindisplay").innerHTML=cookies.email
+    document.getElementById("logindisplay").innerHTML=getCookie('id')
 }
 
 if (rsvps.length == 0) {

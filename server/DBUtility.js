@@ -9,7 +9,7 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   database: 'defaultdb'
 });
 
-// eventObject(1); | The base function to fetch an event.
+console.log(eventObject(1)); // | The base function to fetch an event.
 
 function eventObject(tag) {
 
@@ -28,32 +28,38 @@ function eventObject(tag) {
   database.query("SELECT * FROM events WHERE eventID=1", function (err, result, fields) {
     if (err) throw err;
       result.forEach((row) => {
+      // console.log(row.description);
+      event.name = row.name;
+      event.description = row.description;
+      event.startTime = row.startTime;
+      event.endTime = row.endTime;
+      console.log(event.description);
+      event.eventType = row.eventType;
 
-    // console.log(row.description);
-    event.name = row.name;
-    event.description = row.description;
-    event.startTime = row.startTime;
-    event.endTime = row.endTime;
-    console.log(event.description);
-    event.eventType = row.eventType;
-
-    console.log(event);
-  });
+      console.log(event);
+    });
   });
   console.log(event);
   return event;
 }
 
-function userObject(tag) { //TODO: finish this
-  return {
-    tag: tag, //TODO: get tag from html
-    username: database.query(), //TODO: add parameters
-    password: database.query(),
-    email: database.query(),
-    firstName: database.query(),
-    lastName: database.query(),
-    //status: database.query(),
-  };
+async function userObject(username) { //TODO: finish this
+  return new Promise((resolve, reject) => {
+    user = {}
+    database.query(`SELECT * FROM user_info WHERE id='${username}'`, function (err, result, fields) {
+      if (err) throw err;
+        result.forEach((row) => {
+        // console.log(row.description);
+          user = {
+            id: row.id,
+            email: row.email,
+            password: row.password,
+            tag: row.tag
+          }
+        resolve(user);
+      });
+    });
+  })
 }
 
 function addEvent(event) {
