@@ -1,3 +1,17 @@
+<link href="style.css" rel="stylesheet"/>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                Events
+            </button>
+            <div class="dropdown-content">
+                <a href="optime.html">Group Events (Smart Scheduler)</a>
+                <a href="schedule.html">Schedule a Group Event</a>
+            </div>
+        </div>
+        <a href="login.html" id="logindisplay"></a>
+    </div>
 <html>
     <script src="optime_script.js"></script>
     <link rel="stylesheet" href="style.css"/>
@@ -13,23 +27,21 @@
   <p style="display: inline-block;">add users</p>
     <input style="display: inline-block" type="text" id="user">
     
-    <button onclick="calculate()">add users</button>
+    <button onclick="finduser()">add users</button>
     <button onclick="calculate()">calculate the event!</button>
+
+    <p>owo available times lawl</p>
+
 </body>
   
 <script>
 
     function finduser(){
-      useremail = document.getElementById("user").value
-      if(user found lawl){
-        return("user added")
-      } else
-        return("user does not exist lawl lawl")
+      x = 1;
     }
     function calculate() {
         date = document.getElementById("date").value
         time = document.getElementById("time").value
-        <p>uwu </p>
     }
 </script>
     

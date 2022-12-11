@@ -1,7 +1,8 @@
 <link href="style.css" rel="stylesheet"/>
+<!--failed login id--> 
 
-<body>
-    <div class="navbar">
+<!--navbar--> 
+<div class="navbar">
         <a href="index.html">Home</a>
         <div class="dropdown">
             <button class="dropbtn">
@@ -10,25 +11,31 @@
             <div class="dropdown-content">
                 <a href="optime.html">Group Events (Smart Scheduler)</a>
                 <a href="schedule.html">Schedule a Group Event</a>
+                <a href="signup.html">Sign Up</a>
             </div>
         </div>
         <a href="login.html" id="logindisplay"></a>
     </div>
-<h1>Login</h1>
-<p>Note: Adveeta can u make this page look better.</p>
-
-<p>Email</p>
+<!--title--> 
+<h1>Sign Up</h1>
+<!--parameters--> 
+<p>Userame</p>
 <input type="text" id="username" />
 <p>Password</p>
 <input type="password" id="password" />
 
-<button onclick="login()">Login</button>
+<div><div>
 
-</body>
+<button onclick="signup()">signup</button>
+<div><div>
+  
+
 <script>
-    function login() {
-        username = document.getElementById("username").value
-        password = document.getElementById("password").value
-        window.location.href="/loginwith?username="+username+"&password="+password
+
+    function signup() {
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+  
     }
+  
 </script>
