@@ -85,6 +85,12 @@ function userYesEvents(userTag) {
   };
 }
 
+function userExists(username) {
+  return new Promise((resolve, reject) => {
+    user = {}
+  })
+}
+
 function deleteEvent(eventTag) {}
 
 // function writeToEvents() { TODO: is this necessary?
