@@ -2,24 +2,28 @@
     body {
       font-family: 'Inter', sans-serif;
       font-family: 'Lato', sans-serif;
-      background-color: #abd1c6;
+      background-color: white;
+/*#e3f6f5; */
     }
+
     .event {
-        height: 40%;
+/*         height: 40%; */
         font-size: 30px;
-        margin: 10px 10px;
+/*         margin: 10px 10px; */
         padding: 10px;
         vertical-align: top;
     }
     .navbar {
         overflow: hidden;
-        background-color: #004643;
+        background-color: #abd1c6;
+        
         /* padding: 10px 10px; */
     }
+
     .navbar a {
         float: left;
         font-size: 16px;
-        color: white;
+        color: black;
         text-align: center;
         padding: 20px 16px;
         text-decoration: none;
@@ -32,7 +36,7 @@
         font-size: 16px;
         border: none;
         outline: none;
-        color: white;
+        color: black;
         padding: 20px 20px;
         background-color: inherit;
         font-family: inherit;
@@ -67,40 +71,41 @@
     }
     
     .sidenav {
-        height: 70%;
-        width: 160px;
+        height: 82%;
+        width: 20%;
         position: absolute;
-        z-index: 1;
+/*         z-index: 1; */
         top: 0;
         left: 0;
-        background-color: #111;
+        background-color: #97bab0;
+        color: #fffffe;
         overflow-x: hidden;
         padding-top: 10px;
-        margin-top: 8%;
-        margin-left: 40px;
+        margin-top: 4.5%;
+/*         margin-left: 40px; */
     }
     .eventsection {
-        height: 70%;
+        height: 85%;
         /* width: 160px; */
         position: absolute;
         z-index: 1;
-        background-color: #111;
+        background-color: #e3f6f5;
         overflow-x: hidden;
         padding-top: 10px;
-        margin-top: 4%;
-        margin-left: 25%;
+        margin-left: 20%;
     }
     .rsvps {
-        height: 70%;
+        height: 82%;
         /* width: 160px; */
         position: absolute;
-        z-index: 1;
-        background-color: #111;
+/*         z-index: 1; */
+        background-color: #abd1c6;
         overflow-x: hidden;
         padding-top: 10px;
-        margin-top: 3%;
-        margin-left: 82%;
+/*         margin-top: 3%;  */
+        margin-left: 80%;
         padding: 40px 10px;
+        color: #fffffe;
     }
     .rsvps div {
         margin-top: 20px;
@@ -120,7 +125,7 @@
         box-shadow: rgba(0, 0, 0, 0.1);
     }
     .dbutton {
-        background-color: red;
+        background-color: #e16162;
         color: white;
         width: auto;
         padding: 10px;
