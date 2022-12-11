@@ -100,15 +100,21 @@ function deleteEvent(eventTag) {} //must also delete corresponding RSVPs
 function deleteUser(userTag) {} //must also delete corresponding RSVPs
 
 function addEvent(event) {
-  var sql = "INSERT INTO events (name, description, startTime, endTime, eventType) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "')";
+  var sql = "INSERT INTO events (name, description, startTime, endTime, eventType, host) VALUES ('" + event.name + "', '" + event.description + "','" + event.startTime + "','" + event.endTime + "','" + event.eventType + "', '" + event.host + "')";
 database.query(sql, function (err, result) {
   if (err) throw err;
   console.log(`1 new event added`);
 });
 }
 
-function addUser() {
-
+function addUser(username, password) {
+  return new Promise((resolve, reject) => {
+    var sql = `INSERT INTO user_info (id, password) VALUES ('${username}', '${password}')`;
+database.query(sql, function (err, result) {
+  if (err) throw err;
+  resolve()
+});
+  })
 }
 
 // function writeToEvents() { TODO: is this necessary?
