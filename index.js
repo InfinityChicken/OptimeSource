@@ -2,7 +2,7 @@ const express = require("express") /* Imports express (the server module) */
 var app = express() /* Makes a new server */
 var cookieParser = require('cookie-parser')
 app.use(cookieParser())
-// DBUtility = require('./server/DBUtility.js')
+DBUtility = require('./server/DBUtility.js')
 
 /** app.get is run when a path is loaded on a browser */
 app.get('/', async (req, res) => { // domain.com -> domain.com/web/index.html
