@@ -53,6 +53,15 @@ var upcoming = [
         description: "A fun park meetup! OwO!",
         host: "Goyal, Adveeta"
     }
+    {
+        id: 2,
+        name: "Poger Momento",
+        start: 1670204800000,
+        end: 1670205680000,
+        localStatus: 0, // 0: No, 1: Maybe, 2: Yes, null: Unanswered
+        description: "A poger momento ngl.",
+        host: "Ding, Amber Wanyi"
+    }
 ]
 
 /* The actual code */

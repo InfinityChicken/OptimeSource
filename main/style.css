@@ -124,9 +124,11 @@
         box-shadow: rgba(0, 0, 0, 0.1);
     }
     .dbutton {
-        background-color: #e16162;
+        background-color: hsl(360, 68%, 63%);
         color: white;
         width: auto;
         padding: 10px;
         border: none;
     }
+
+    
