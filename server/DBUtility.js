@@ -1,8 +1,13 @@
 var mysql = require("mysql");
 require('dotenv').config()
 
+<<<<<<< Updated upstream
 
 console.log({ //to use this, you must whitelist your ip address in digitalocean 
+=======
+var database = mysql.createConnection({
+  //to use this, you must whitelist your ip address in digitalocean
+>>>>>>> Stashed changes
   host: process.env.HOST,
   user: process.env.USERNAME,
   password: process.env.PASSWORD,
@@ -18,6 +23,7 @@ var database = mysql.createConnection({ //to use this, you must whitelist your i
   database: 'defaultdb'
 });
 
+<<<<<<< Updated upstream
 console.log(eventObject(1)); // | The base function to fetch an event.
 
 function eventObject(tag) {
@@ -47,6 +53,25 @@ function eventObject(tag) {
 
       console.log(event);
     });
+=======
+function eventObject(tag) {
+  return new Promise((resolve, reject) => {
+    let event = { tag: tag };
+    database.query(
+      `SELECT * FROM events WHERE eventID='${tag}'`,
+      function (err, result, fields) {
+        if (err) throw err;
+        if (result.length == 0) return resolve(null);
+        row = result[0];
+        event.name = row.name;
+        event.description = row.description;
+        event.startTime = row.startTime;
+        event.endTime = row.endTime;
+        event.eventType = row.eventType;
+        resolve(event);
+      }
+    );
+>>>>>>> Stashed changes
   });
   console.log(event);
   return event;
