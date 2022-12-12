@@ -46,13 +46,13 @@ var rsvps = [
 var upcoming = [
     {
         id: 1,
-        name: "Park Meetup",
+        name: "uwu",
         start: 1670194800000,
         end: 1670205600000,
         localStatus: 2, // 0: No, 1: Maybe, 2: Yes, null: Unanswered. Only display events with 1 or 2
         description: "A fun park meetup! OwO!",
         host: "Goyal, Adveeta"
-    }
+    },
     {
         id: 2,
         name: "Poger Momento",
@@ -98,10 +98,11 @@ if (upcoming.length == 0) {
     startTime = `${start.getHours()}:${start.getMinutes()<10?"0":""}${start.getMinutes().toString()}`
     endTime = `${finish.getHours()}:${finish.getMinutes()<10?"0":""}${finish.getMinutes().toString()}`
     event1.innerHTML=`${upcoming[0].name}<br><p style="font-size: 20px;">${date} ${startTime}-${endTime}<br>${upcoming[0].description}<br>Host: ${upcoming[0].host}</p>`
+
 }
 if (upcoming.length < 5) {
-    document.querySelector('#event5').innerHTML = ":("
-    if (upcoming.length < 4) document.querySelector('#event4').innerHTML = ":("
-    if (upcoming.length < 3) document.querySelector('#event3').innerHTML = ":("
-    if (upcoming.length < 2) document.querySelector('#event2').innerHTML = ":("
+    document.querySelector('#event5').innerHTML = "uwu"
+    if (upcoming.length < 4) document.querySelector('#event4').innerHTML = "owo"
+    if (upcoming.length < 3) document.querySelector('#event3').innerHTML = "uwo"
+    if (upcoming.length < 2) document.querySelector('#event2').innerHTML = "qwq"
 }
