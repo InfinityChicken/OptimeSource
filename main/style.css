@@ -84,14 +84,14 @@
 /*         margin-left: 40px; */
     }
     .eventsection {
-        height: 85%;
-        /* width: 160px; */
+        height: 90%;
+         width: 80%; 
         position: absolute;
         z-index: 1;
         background-color: #e3f6f5;
         overflow-x: hidden;
         padding-top: 10px;
-        margin-left: 20%;
+        /* margin-left: 20%; */
     }
     .rsvps {
         height: 82%;
